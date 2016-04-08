@@ -83,6 +83,7 @@ public class DroolsTest {
 			
 			
 			/**
+			 * 
 调度队列里的match 就像一个剪影一样记录了每一次的change
 不会有 这一次的把上一次覆盖的情况 每一个都在那里
 
