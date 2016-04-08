@@ -1,0 +1,13 @@
+package com.sample
+ 
+import com.sample.DroolsTest.Message;
+import java.util.Date;
+ 
+
+rule "test file 1"
+    when
+        Message ( $message :  file.fileName str[endsWith] ".xls" , $fileName:file.fileName  )
+        Message ( file.fileName str[endsWith] ".xl"  )
+    then
+    	System.out.println( " ======== test rule file 测试  " + $fileName);
+end

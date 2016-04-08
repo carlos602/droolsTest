@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
+    <kbase name="rules" packages="rules" >
+        <ksession name="ksession-rules"/>
+    </kbase>
+    <kbase name="rules-me" packages="rules.me">
+        <ksession name="ksession-rules-me">
+<!--         		<fileLogger file="/Users/carlosyang/kii/log.jj"></fileLogger> -->
+        		<consoleLogger/>
+        </ksession>
+        
+    </kbase>
+    <kbase name="dtables" packages="dtables">
+        <ksession name="ksession-dtables"/>
+    </kbase>
+    <kbase name="process" packages="process">
+        <ksession name="ksession-process"/>
+    </kbase>
+    
+</kmodule>

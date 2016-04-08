@@ -1,0 +1,114 @@
+package com.sample
+ 
+import com.sample.DroolsTest.Message;
+import com.sample.DroolsTest.Trigger;
+import com.sample.DroolsTest.MatchResult;
+import java.util.Date;
+ 
+ 
+
+
+
+rule "test file"
+    when
+    	
+        $message : Message ( file.fileName str[endsWith] ".xls" , $fileName:file.fileName  )
+    then
+    insertLogical(new MatchResult($message));
+    	System.out.println( " ======== test rule file 测试  $message： " + $message.getMessage() + "  $fileName： " + $fileName);
+end
+
+rule "test trigger"
+    when
+        $trigger : Trigger ( enable == true  )
+    then
+    insertLogical(new MatchResult($trigger));
+    	System.out.println( " ======== trigger: " + $trigger.getTriggerName());
+end
+
+query "getMatch" ()
+    results : MatchResult (  )
+end
+
+query "getTrigger" ()
+    results : Trigger ( enable == true  )
+end
+
+
+
+ 
+ /*
+declare Bean
+    delay   : String = "30s"
+    period  : long = 60000
+end
+
+
+rule "test timer"
+       	//timer (int: 5s 2s; start=3-JAN-2010, end=5-JAN-2019)
+       	//timer (int: 1s 1s)
+       	//timer (int: 5s )
+       	
+//       	timer ( cron: 0/2 * * * * ? )
+       	//timer ( cron: 0 36-39 * * * ?  )
+//       	timer ( cron: 0-59/3 *  * * * ?  )
+       	timer ( cron: 0-59 *  * * * ?  )
+       				  //0 0/1 * * * ? 
+       	
+    when
+    	//eval(true)
+    then
+    
+       //System.out.println(  new Date().toLocaleString() + " 22222222222 timer test .................." );
+end
+
+
+
+rule "test no 条件 "
+    when
+        eval(true)
+    then
+    	System.out.println( " ======== test rule   no 条件 " );
+end
+
+
+rule "test file"
+    when
+        Message ( $message :  file.fileName str[endsWith] ".xls" , $fileName:file.fileName  )
+    then
+    	System.out.println( " ======== test rule file 测试  $message： " + $message + "  $fileName： " + $fileName);
+end
+
+
+rule "test"
+	//timer ( cron: 0-59 *  * * * ?  )
+	
+    when
+        Message ( (values["brightness"] >500) , type str[startsWith] "en" )&&
+        $message : Message (   type str[endsWith] "sh" )
+    then
+    	System.out.println( " ======== test rule 测试 "  + $message );
+end
+
+
+
+rule "Hello World"
+    when
+        m : Message( status == Message.HELLO, myMessage : message )
+    then
+        System.out.println( myMessage );
+        m.setMessage( "Goodbye cruel world" );
+        m.setStatus( Message.GOODBYE );
+        System.out.println( "rule 1  no update () " );
+        //update( m );
+end
+
+rule "GoodBye"
+    when
+        Message( status == Message.GOODBYE, myMessage : message )
+    then
+    
+        System.out.println( "rule 2 " );
+        System.out.println( myMessage );
+end
+*/
