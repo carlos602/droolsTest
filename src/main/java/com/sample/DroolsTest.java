@@ -81,6 +81,26 @@ public class DroolsTest {
 			// message.setStatus(Message.GOODBYE);
 			//kSession.fireAllRules();
 			
+			
+			/**
+调度队列里的match 就像一个剪影一样记录了每一次的change
+不会有 这一次的把上一次覆盖的情况 每一个都在那里
+
+每次有fact的增加删除或者改变 都会形成一个match 或者叫active 这个不管你调不调session。fire 都会有   这些match会被存到一个调度队列里  每次的change 都会对应一个或者一组match  它们已经生成了 不会受到影响的
+drools 群的  12:30:34
+[自动回复]您好，我现在有事不在，一会再和您联系。不再提醒
+┠无泪  12:31:53
+这里如果形成的那些match的时候 对象数据会不会都形成个镜像 （包括哪些？是否包括global）等等？
+drools 群的  12:41:51
+会的一切与then end 运行相关的上下文都会有一个剪影被保存
+drools 群的  12:42:41
+这样就保证了 chenge太频繁 被覆盖的情况
+
+			 */
+			//如果是fireAllRules之后的update 就不会直接触发 
+			//session.fireUntilHalt();就会
+			//fireAllRules 是释放全部 当前调度队列里的match 之后就返回了
+			//fireUntilHalt 除了上述功能 还会以阻塞的形式 继续等着新的match到来
 			new Thread(new Runnable() {
 				public void run() {
 					System.out.println("======kSession.fireUntilHalt(); start...");
